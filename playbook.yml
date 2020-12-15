@@ -1,0 +1,9 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: install root authorized_keys
+      authorized_key:
+        user: root
+        key: "{{ '\n'.join(root_authorized_keys) }}"
+        exclusive: true
