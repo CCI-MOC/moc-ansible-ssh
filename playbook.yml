@@ -1,9 +1,8 @@
 ---
 - hosts: all
   become: true
-  tasks:
-    - name: install root authorized_keys
-      authorized_key:
-        user: root
-        key: "{{ '\n'.join(root_authorized_keys) }}"
-        exclusive: true
+  collections:
+    - moc.ops_common
+  roles:
+    - moc.ops_common.ssh_config
+    - moc.ops_common.ssh_authorized_keys
